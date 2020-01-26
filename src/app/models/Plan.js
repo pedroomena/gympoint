@@ -7,7 +7,13 @@ class Plan extends Model {
                 title: Sequelize.STRING,
                 duration: Sequelize.INTEGER,
                 price: Sequelize.FLOAT,
-                is_active: Sequelize.BOOLEAN
+                is_active: Sequelize.BOOLEAN,
+                full_price: {
+                    type: Sequelize.VIRTUAL,
+                    get() {
+                        return this.price * this.duration;
+                    }
+                }
             },
             {
                 sequelize
